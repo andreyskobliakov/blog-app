@@ -5,8 +5,8 @@ import SinglePost from '../pages/SinglePost.vue';
 import Contact from '../pages/Contact.vue';
 
 const routes = [
-  { path: '/', redirect: '/home' }, // Перенаправление с корневого пути на '/home'
-  { path: '/home', component: Home }, // Страница Home
+  { path: '/', redirect: '/home' },
+  { path: '/home', component: Home }, 
   { path: '/posts', component: Posts },
   { path: '/post/:id', component: SinglePost },
   { path: '/contact', component: Contact },
