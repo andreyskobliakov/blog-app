@@ -21,28 +21,11 @@ import Layout from '../components/Layout.vue';
 import Comment from '../components/Comment.vue';
 import { useRoute } from 'vue-router';
 import { usePostData } from '../composables/usePostData';
-import { useToast } from 'vue-toastification'; // Импортируйте useToast
 
 const { params } = useRoute();
 const { post, comments, postImage } = usePostData(params.id);
-const toast = useToast();
 
-showInfoToast('Loading content', 2000);
-setTimeout(() => {
-  showSuccessToast('Content loaded OK', 1000);
-}, 2000);
 
-function showInfoToast(message, timeout) {
-  toast.info(message, {
-    timeout: timeout
-  });
-}
-
-function showSuccessToast(message, timeout) {
-  toast.success(message, {
-    timeout: timeout
-  });
-}
 </script>
 
 <style scoped>

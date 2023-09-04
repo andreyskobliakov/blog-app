@@ -22,7 +22,6 @@ export function usePostData(postId) {
       post.value = postResponse.data;
       comments.value = commentsResponse.data;
 
-      // Получаем URL случайного изображения из API Lorem Picsum
       const response = await axios.get('https://picsum.photos/800/600');
       postImage.value = response.request.responseURL;
     } catch (error) {
@@ -36,14 +35,18 @@ export function usePostData(postId) {
 export function usePostsData() {
   const posts = ref([]);
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (url) => {
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      const response = await axios.get(url);
       posts.value = response.data.slice(0, 10);
     } catch (error) {
       console.error('Помилка при отриманні даних з API:', error);
     }
   };
 
-  return { posts, fetchPosts };
+  onMounted(() => {
+    fetchPosts('https://jsonplaceholder.typicode.com/posts'); // Можете передать URL здесь
+  });
+
+  return { posts };
 }
