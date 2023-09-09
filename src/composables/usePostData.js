@@ -34,19 +34,31 @@ export function usePostData(postId) {
 
 export function usePostsData() {
   const posts = ref([]);
+  const totalPages = ref(0);
+  const currentPage = ref(1); 
+  const limit = ref(10); 
 
-  const fetchPosts = async (url) => {
+  const fetchPosts = async () => {
     try {
-      const response = await axios.get(url);
-      posts.value = response.data.slice(0, 10);
+      const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?_page=${currentPage.value}&_limit=${limit.value}`);
+      posts.value = response.data;
+
+      const totalPostsResponse = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      totalPages.value = Math.ceil(totalPostsResponse.data.length / limit.value);
     } catch (error) {
       console.error('Помилка при отриманні даних з API:', error);
     }
   };
 
+  const changePage = (newPage) => {
+    currentPage.value = newPage;
+    fetchPosts();
+  };
+
   onMounted(() => {
-    fetchPosts('https://jsonplaceholder.typicode.com/posts'); // Можете передать URL здесь
+    fetchPosts();
   });
 
-  return { posts };
+  return { posts, totalPages, currentPage, changePage, limit };
 }
+
