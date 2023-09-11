@@ -3,7 +3,9 @@
     <template #header>
     </template>
 
-    <div class="container mx-auto p-4">
+    <Loader v-if="isLoading" />
+
+    <div v-else class="container mx-auto p-4">
       <div class="bg-white rounded-lg p-4 shadow-md">
         <h2 class="font-semibold text-3xl">{{ post.title }}</h2>
         <p class="mt-2 text-gray-600 text-2xl">{{ post.body }}</p>
@@ -19,30 +21,19 @@
 <script setup>
 import Layout from '../components/Layout.vue';
 import Comment from '../components/Comment.vue';
+import Loader from '../components/Loader.vue'; // Импорт компонента Loader.vue
 import { useRoute } from 'vue-router';
 import { usePostData } from '../composables/usePostData';
-import { useToast } from 'vue-toastification'; // Импортируйте useToast
+import { ref } from 'vue';
 
 const { params } = useRoute();
 const { post, comments, postImage } = usePostData(params.id);
-const toast = useToast();
 
-showInfoToast('Loading content', 2000);
+const isLoading = ref(true);
+
 setTimeout(() => {
-  showSuccessToast('Content loaded OK', 1000);
-}, 2000);
-
-function showInfoToast(message, timeout) {
-  toast.info(message, {
-    timeout: timeout
-  });
-}
-
-function showSuccessToast(message, timeout) {
-  toast.success(message, {
-    timeout: timeout
-  });
-}
+  isLoading.value = false; 
+}, 1000); 
 </script>
 
 <style scoped>
