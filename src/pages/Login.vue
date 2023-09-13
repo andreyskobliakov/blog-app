@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import LayoutLogin from "../components/LayoutLogin.vue"; // Подставьте фактический путь
+import LayoutLogin from "../components/LayoutLogin.vue";
 import { ref } from "vue";
 
 const email = ref("");
@@ -46,7 +46,7 @@ const password = ref("");
 export default {
   name: "Login",
   components: {
-    LayoutLogin, // Здесь добавляем компонент LayoutLogin
+    LayoutLogin,
   },
 };
 </script>
