@@ -21,7 +21,7 @@
 <script setup>
 import Layout from '../components/Layout.vue';
 import Comment from '../components/Comment.vue';
-import Loader from '../components/Loader.vue'; // Импорт компонента Loader.vue
+import Loader from '../components/Loader.vue';
 import { useRoute } from 'vue-router';
 import { usePostData } from '../composables/usePostData';
 import { ref } from 'vue';

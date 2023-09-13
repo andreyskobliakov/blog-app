@@ -31,9 +31,6 @@ const props = defineProps({
 const { post, comments, postImage } = usePostData(props.post.id);
 const { buttonClasses } = useButtonStyles(props);
 
-const handleButtonClick = () => {
-  console.log('Button clicked');
-};
 </script>
 
 <style scoped>
