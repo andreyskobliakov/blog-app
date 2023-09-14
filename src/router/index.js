@@ -12,15 +12,15 @@ const routes = [
   { path: "/post/:id", component: SinglePost },
   {
     path: "/login",
-    component: LayoutLogin, // Используем BlankLayout для страницы Login
+    component: LayoutLogin,
     children: [
       {
         path: "",
         name: "Login",
         component: () =>
-          import(/* webpackChunkName: "login" */ "../pages/Login.vue"),
+          import("../pages/Login.vue"),
         meta: {
-          layout: "LayoutLogin", // Указываем макет для этой страницы
+          layout: "LayoutLogin", 
         },
       },
     ],
