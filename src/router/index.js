@@ -3,7 +3,7 @@ import Home from "../pages/Home.vue";
 import Posts from "../pages/Posts.vue";
 import SinglePost from "../pages/SinglePost.vue";
 import Contact from "../pages/Contact.vue";
-import LayoutLogin from "../components/LayoutLogin.vue"; // Импортируем BlankLayout
+import LayoutLogin from "../components/LayoutLogin.vue";
 
 const routes = [
   { path: "/", redirect: "/home" },
